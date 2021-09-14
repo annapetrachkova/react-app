@@ -1,35 +1,23 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types'
 
-const useInputValue = (defaultValue = '') => {
-    const [value, setValue] = useState(defaultValue)
-
-    return {
-        bind: {
-            value,
-            onChange: event => setValue(event.target.value)
-        },
-        clear: () => setValue(''),
-        value: () => value
-    }
-};
-
 const AddTodo = ({ onCreate }) => {
-    const input = useInputValue('')
-   // const [value, setValue] = useState('');
+    const [value, setValue] = useState('')
 
     function submitHandler(event) {
         event.preventDefault()
 
-        if (input.value().trim()) {
-            onCreate(input.value())
-            input.clear()
+        if (value) {
+            onCreate(value)
+            setValue('')
         }
     }
 
     return (
         <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
-            <input {...input.bind}/>
+             {/*вынести onChange в отдельную функцию*/}
+            <input value={value} onChange={event => setValue(event.target.value)} />
+            {/*кнопка была disabled если value пустая строка*/}
             <button type="submit">Add todo</button>
         </form>
     )
