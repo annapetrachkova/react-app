@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types'
 
-function useInputValue(defaultValue = '') {
+const useInputValue = (defaultValue = '') => {
     const [value, setValue] = useState(defaultValue)
 
     return {
@@ -12,11 +12,11 @@ function useInputValue(defaultValue = '') {
         clear: () => setValue(''),
         value: () => value
     }
-}
+};
 
-function AddTodo({ onCreate }) {
+const AddTodo = ({ onCreate }) => {
     const input = useInputValue('')
-    const [value, setValue] = useState('');
+   // const [value, setValue] = useState('');
 
     function submitHandler(event) {
         event.preventDefault()

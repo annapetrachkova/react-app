@@ -11,7 +11,7 @@ const styles = {
 }
 
 
-function TodoList(props) {
+const TodoList = (props) => {
     return (
         <ul style={styles.ul}>
             { props.todos.map((todo, index) => {
