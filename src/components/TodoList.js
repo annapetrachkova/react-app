@@ -20,6 +20,7 @@ const TodoList = (props) => {
                     key={todo.id}
                     index={index}
                     onChange={props.onToggle}
+                    removeTodo={props.removeTodo}
                 />
             })}
         </ul>

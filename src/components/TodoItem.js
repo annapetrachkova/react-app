@@ -1,6 +1,5 @@
 import React, {useContext} from "react";
 import PropTypes from 'prop-types';
-import Context from "../context";
 
 const styles = {
     li: {
@@ -16,17 +15,13 @@ const styles = {
         marginRight: '1rem'
     }
 }
+//все стили занести в scss
+// устновить scss
 
-const TodoItem = ({ todo, index, onChange}) => {
-    const { removeTodo } = useContext(Context)
-    const classes = []
-
-    if (todo.completed) {
-        classes.push('done')
-    }
+const TodoItem = ({ todo, index, onChange, removeTodo}) => {
     return (
         <li style={styles.li}>
-            <span className={classes.join(' ')}>
+            <span className={todo.completed ? 'done' : null}>
                 <input
                     type="checkbox"
                     checked={todo.completed}
@@ -38,7 +33,7 @@ const TodoItem = ({ todo, index, onChange}) => {
                 {todo.title}
             </span>
 
-            <button className='rm' onClick={removeTodo.bind(null, todo.id)}>
+            <button className='rm' onClick={() => removeTodo(todo.id)}>
                 &times;
             </button>
         </li>

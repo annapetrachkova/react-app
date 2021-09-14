@@ -1,18 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import TodoList from "./components/TodoList";
-import Context from "./context";
 import Loader from "./Loader";
 import Modal from "./Modal/Modal";
-
-const AddTodo = React.lazy(() => new Promise(resolve => {
-    setTimeout(() => {
-        resolve(import('./components/AddTodo'))
-    }, 1000)
-}))
+import AddTodo from "./components/AddTodo";
 
 const App = () => {
-    const [todos, setTodos] = React.useState( []);
-    const [loading, setLoading] = React.useState(true)
+    const [todos, setTodos] = useState([]);
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
@@ -25,6 +19,7 @@ const App = () => {
             })
     }, [])
 
+
     const toggleTodo = (id) => {
         setTodos(
             todos.map(todo => {
@@ -33,6 +28,7 @@ const App = () => {
                 }
                 return todo;
             })
+            // переписать через find
         )
     }
 
@@ -50,26 +46,25 @@ const App = () => {
                 }
            ])
         )
+        // использовать деструкторизацию
+        // concat не использовать
     }
 
   return (
-      <Context.Provider value={{ removeTodo }}>
-          <div className='wrapper'>
-              <h1>ToDo</h1>
-              <Modal/>
-              <React.Suspense fallback={<p>Loading...</p>}>
-                 <AddTodo onCreate={addTodo}/>
-              </React.Suspense>
+      <div className='wrapper'>
+          <h1>ToDo</h1>
+          <Modal/>
+          <AddTodo onCreate={addTodo}/>
 
-              {loading && <Loader/>}
 
-              {todos.length ? (
-                  <TodoList todos={todos} onToggle={toggleTodo}/>
-              ) : (
-                  loading ? null : <p>No todos!</p>
-              )}
-          </div>
-      </Context.Provider>
+          {loading && <Loader/>}
+
+          {todos.length ? (
+              <TodoList todos={todos} onToggle={toggleTodo} removeTodo={removeTodo}/>
+          ) : (
+              loading ? null : <p>No todos!</p>
+          )}
+      </div>
   );
 }
 
