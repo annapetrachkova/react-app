@@ -23,32 +23,32 @@ code {
   list-style: none;
   margin: 0;
   padding: 0;
-}
 
-.todoitem-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: .5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: .5rem;
-
-
-  .done {
-    text-decoration: line-through;
-  }
+  .todoitem-li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: .5rem;
 
 
-  .todoitem-input {
-    margin-right: 1rem
-  }
+    .done {
+      text-decoration: line-through;
+    }
 
-  .rm {
-    background: red;
-    border-radius: 50%;
-    color: white;
-    border: none;
+
+    &input {
+      margin-right: 1rem
+    }
+
+    .rm {
+      background: red;
+      border-radius: 50%;
+      color: white;
+      border: none;
+    }
   }
 }
 

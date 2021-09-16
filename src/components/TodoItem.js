@@ -1,9 +1,6 @@
 import React, {useContext} from "react";
 import PropTypes from 'prop-types';
 
-//все стили занести в scss
-// устновить scss
-
 const TodoItem = ({ todo, index, onChange, removeTodo}) => {
     return (
         <li className='todoitem-li'>
@@ -11,7 +8,7 @@ const TodoItem = ({ todo, index, onChange, removeTodo}) => {
                 <input
                     type="checkbox"
                     checked={todo.completed}
-                    className='todoitem-input'
+                    className='todoitem-li-input'
                     onChange={() => onChange(todo.id)}
                 />
                  <strong>{index + 1}</strong>
