@@ -5,7 +5,7 @@ import Modal from "./Modal/Modal";
 import AddTodo from "./components/AddTodo";
 
 const App = () => {
-    const [todos, setTodos] = useState([]);
+    let [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -28,7 +28,6 @@ const App = () => {
                 }
                 return todo;
             })
-            // переписать через find
         )
     }
 
@@ -37,17 +36,14 @@ const App = () => {
     }
 
     const addTodo = (title) => {
+        const param = [{
+            title,
+            id: Date.now(),
+            completed: false,
+        }];
         setTodos(
-            todos.concat([
-                {
-                    title,
-                    id: Date.now(),
-                    completed: false,
-                }
-           ])
+            todos = [...todos, ...param]
         )
-        // использовать деструкторизацию
-        // concat не использовать
     }
 
   return (

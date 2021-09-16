@@ -4,21 +4,21 @@ import PropTypes from 'prop-types'
 const AddTodo = ({ onCreate }) => {
     const [value, setValue] = useState('')
 
-    function submitHandler(event) {
+    const submitHandler = (event) => {
         event.preventDefault()
-
         if (value) {
             onCreate(value)
             setValue('')
         }
     }
+    const changeHandler = (event) => {
+        setValue(event.target.value);
+    }
 
     return (
         <form style={{marginBottom: '1rem'}} onSubmit={submitHandler}>
-             {/*вынести onChange в отдельную функцию*/}
-            <input value={value} onChange={event => setValue(event.target.value)} />
-            {/*кнопка была disabled если value пустая строка*/}
-            <button type="submit">Add todo</button>
+            <input value={value} onChange={changeHandler} />
+            <button type="submit" disabled={!value.trim()}>Add todo</button>
         </form>
     )
 }
