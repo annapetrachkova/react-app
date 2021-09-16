@@ -5,7 +5,7 @@ import Modal from "./Modal/Modal";
 import AddTodo from "./components/AddTodo";
 
 const App = () => {
-    let [todos, setTodos] = useState([]);
+    const [todos, setTodos] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -41,9 +41,7 @@ const App = () => {
             id: Date.now(),
             completed: false,
         }];
-        setTodos(
-            todos = [...todos, ...param]
-        )
+        setTodos([...todos, ...param])
     }
 
   return (
