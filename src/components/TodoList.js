@@ -2,18 +2,9 @@ import React from "react";
 import PropTypes from 'prop-types';
 import TodoItem from "./TodoItem";
 
-const styles = {
-    ul: {
-        listStyle: 'none',
-        margin: 0,
-        padding: 0
-    }
-}
-
-
 const TodoList = (props) => {
     return (
-        <ul style={styles.ul}>
+        <ul className='todolist-ul'>
             { props.todos.map((todo, index) => {
                 return <TodoItem
                     todo={todo}

@@ -28,7 +28,6 @@ const App = () => {
                 }
                 return todo;
             })
-            // переписать через find
         )
     }
 
@@ -37,17 +36,12 @@ const App = () => {
     }
 
     const addTodo = (title) => {
-        setTodos(
-            todos.concat([
-                {
-                    title,
-                    id: Date.now(),
-                    completed: false,
-                }
-           ])
-        )
-        // использовать деструкторизацию
-        // concat не использовать
+        const param = [{
+            title,
+            id: Date.now(),
+            completed: false,
+        }];
+        setTodos([...todos, ...param])
     }
 
   return (
